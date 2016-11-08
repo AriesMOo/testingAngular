@@ -5,16 +5,22 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'my-app',
   template: `
-    <app-header-layout has-scrolling-region>
-      <app-header fixed>
-        <app-toolbar [class.raised]="isInChildView">
-          <paper-icon-button class="flecha" icon="arrow-back" *ngIf="isInChildView" (click)="goBack()"></paper-icon-button>
-          <div title spacer>{{title}}</div>
-          <paper-icon-button icon="search"></paper-icon-button>
-        </app-toolbar>
-      </app-header>
-      <router-outlet></router-outlet>
-    </app-header-layout>
+  <app-header-layout>
+    <app-header>
+      <app-toolbar>
+        <paper-icon-button icon="menu" (click)="togglePolymerDrawer()"></paper-icon-button>
+        <div main-title spacer>App name</div>
+      </app-toolbar>
+    </app-header>
+
+    main content
+
+    <router-outlet></router-outlet>
+
+    <app-drawer id="panel">
+      drawer-content
+    </app-drawer>
+  </app-header-layout>
   `,
   styles: [`
     app-toolbar {
@@ -29,6 +35,11 @@ import { Subscription } from 'rxjs/Subscription';
       position: absolute;
       top: 12px;
       left: 8px;
+    }
+
+    app-drawer {
+      //--app-drawer-width: 400px;
+      //--app-drawer-scrim-background: var(--primary-color);
     }
   `]
 })
@@ -59,5 +70,9 @@ export class AppComponent implements OnInit {
 
   goBack() {
     this._router.navigate(['/heroes']);
+  }
+
+  togglePolymerDrawer() {
+    document.querySelector('#panel').toggle();
   }
 }

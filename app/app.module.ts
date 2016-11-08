@@ -20,7 +20,8 @@ import { HeroDetailComponent } from './hero-detail.component';
     PolymerElement('vaadin-grid'),
     HeroDetailComponent,
     PolymerElement('paper-input'),
-    PolymerElement('vaadin-date-picker')
+    PolymerElement('vaadin-date-picker'),
+    PolymerElement('app-drawer')
   ],
   providers: [ HeroService, appRoutingProviders ],
   bootstrap:    [ AppComponent ],
